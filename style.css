@@ -25,20 +25,21 @@ body.light-mode {
     --surface: #ffffff;
     --surface-light: #f2f2f7;
     --border: rgba(0, 0, 0, 0.1);
-    --hero-opacity: 0.15;
+    --hero-opacity: 0.7;
     --card-img-opacity: 0.8;
 }
 
-body.light-mode section.container,
-body.light-mode footer.container,
-body.light-mode main.legal-container {
+/* FULL-WIDTH SECTION BACKGROUND TRICK (APPLIES TO BOTH MODES) */
+section.container,
+footer.container,
+main.legal-container {
     position: relative;
     z-index: 1;
 }
 
-body.light-mode section.container::before,
-body.light-mode footer.container::before,
-body.light-mode main.legal-container::before {
+section.container::before,
+footer.container::before,
+main.legal-container::before {
     content: '';
     position: absolute;
     top: 0;
@@ -50,11 +51,23 @@ body.light-mode main.legal-container::before {
     background-color: inherit;
 }
 
+/* DARK MODE (DEFAULT) ALTERNATING BACKGROUNDS */
+#about { background-color: var(--bg); }
+#skills { background-color: var(--surface); }
+#projects { background-color: var(--bg); padding-top: 100px; padding-bottom: 80px; }
+#contact { background-color: var(--surface); padding-top: 80px; padding-bottom: 80px; }
+.contact-wrapper { margin-top: 20px; padding-top: 0; }
+footer.container { background-color: var(--surface-light); margin-top: 0; padding-top: 60px; border-top: 1px solid var(--border); }
+.footer-top { padding-top: 0; }
+main.legal-container { background-color: var(--bg); }
+
 body.light-mode #about { background-color: #ffffff; }
 body.light-mode #skills { background-color: #f2f2f7; }
-body.light-mode #projects { background-color: #ffffff; padding-top: 100px; padding-bottom: 100px; }
-body.light-mode #contact { background-color: #f2f2f7; }
-body.light-mode footer.container { background-color: #ffffff; margin-top: 0; padding-top: 120px; border-top: 1px solid var(--border); }
+body.light-mode #projects { background-color: #ffffff; padding-top: 100px; padding-bottom: 80px; }
+body.light-mode #contact { background-color: #f2f2f7; padding-top: 80px; padding-bottom: 80px; }
+body.light-mode .contact-wrapper { margin-top: 20px; padding-top: 0; }
+body.light-mode footer.container { background-color: #ffffff; margin-top: 0; padding-top: 60px; border-top: 1px solid var(--border); }
+body.light-mode .footer-top { padding-top: 0; }
 body.light-mode main.legal-container { background-color: #ffffff; }
 
 /* FIX FOR PROJECT CARDS IN LIGHT MODE */
@@ -86,6 +99,7 @@ body.light-mode .project-content-overlay {
 
 body.light-mode .hero-bg-wrapper {
     mix-blend-mode: multiply;
+    filter: invert(1) grayscale(100%) contrast(1.2);
 }
 
 body.light-mode nav {
@@ -354,7 +368,7 @@ nav a.active {
     gap: 100px;
     /* Increased gap */
     text-align: left;
-    margin-top: 80px;
+    margin-top: -30px;
     max-width: 1200px;
     /* Constrain for better centering */
     margin-left: auto;
@@ -460,7 +474,7 @@ footer {
 .footer-top {
     display: flex;
     justify-content: space-between;
-    padding-top: 30px;
+    padding-top: 0px;
     gap: 80px;
     margin-bottom: 40px;
 }
