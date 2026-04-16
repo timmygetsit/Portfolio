@@ -72,33 +72,50 @@ document.addEventListener('mousemove', (e) => {
     }
 });
 
-// Contact Form Simulation
+// Contact Form Handling (AJAX to Formspree)
 const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = contactForm.querySelector('.btn-submit');
         const originalText = btn.textContent;
 
-        btn.textContent = 'TRANSMITTING...';
+        btn.textContent = 'SENDING...';
         btn.disabled = true;
 
-        // Simulating network delay
-        setTimeout(() => {
-            btn.textContent = 'SUCCESS';
-            formStatus.textContent = '> TRANSMISSION_RECEIVED. I WILL RESPOND SHORTLY.';
+        const formData = new FormData(contactForm);
+        
+        try {
+            const response = await fetch(contactForm.action, {
+                method: contactForm.method,
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                btn.textContent = 'SENT';
+                formStatus.textContent = '> Message has been sent. I will respond as soon as possible.';
+                formStatus.style.display = 'block';
+                formStatus.style.color = 'var(--accent)';
+                contactForm.reset();
+            } else {
+                throw new Error('Oops! There was a problem submitting your form');
+            }
+        } catch (error) {
+            btn.textContent = 'ERROR';
+            formStatus.textContent = '> Oops! There was a problem submitting your form.';
             formStatus.style.display = 'block';
-            formStatus.style.color = 'var(--accent)';
-
-            contactForm.reset();
-
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.disabled = false;
-            }, 3000);
-        }, 1500);
+            formStatus.style.color = '#ff6b6b';
+        }
+        
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }, 5000);
     });
 }
 
@@ -138,3 +155,15 @@ if (themeToggle) {
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
     });
 }
+
+// Sync Proficiency Bars with Text Values
+const progressItems = document.querySelectorAll('.progress-item');
+progressItems.forEach(item => {
+    const valueSpan = item.querySelector('.progress-label span:nth-child(2)');
+    const fillBar = item.querySelector('.progress-bar-fill');
+    
+    if (valueSpan && fillBar) {
+        const percentage = valueSpan.textContent.trim();
+        fillBar.style.setProperty('--target-width', percentage);
+    }
+});
