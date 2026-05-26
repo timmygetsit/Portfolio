@@ -1019,3 +1019,106 @@ body.light-mode .progress-bar-fill {
     .project-card-unique { min-width: 90vw; height: 320px; }
     .contact-info h2 { font-size: 2.8rem; }
 }
+
+/* About Page Specific Styles - UI/UX Pro Max Guideline compliant */
+.about-page {
+    padding-top: 150px;
+    padding-bottom: 100px;
+    min-height: 100vh;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.about-photo-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+}
+
+.about-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transition: var(--transition-smooth);
+}
+
+.about-photo:hover {
+    transform: scale(1.02);
+}
+
+.about-photo-backdrop {
+    position: absolute;
+    top: 15px;
+    left: -15px;
+    right: 15px;
+    bottom: -15px;
+    background: var(--surface-light);
+    border-radius: 50%;
+    z-index: 1;
+    border: 1px dashed var(--border);
+}
+
+.about-content h1 {
+    font-size: 4.5rem;
+    margin-bottom: 24px;
+    color: var(--fg);
+}
+
+.about-lead {
+    font-size: 1.4rem;
+    color: var(--fg-muted);
+    margin-bottom: 48px;
+    line-height: 1.6;
+}
+
+.about-details {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 48px;
+}
+
+.about-section h3 {
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.about-section p {
+    font-size: 1.1rem;
+    color: var(--fg-muted);
+    line-height: 1.7;
+}
+
+@media (max-width: 1024px) {
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    
+    .about-photo-backdrop {
+        display: none;
+    }
+    
+    .about-photo-wrapper {
+        margin: 0 auto;
+    }
+    
+    .about-content h1 {
+        font-size: 3.5rem;
+    }
+}

@@ -142,7 +142,9 @@ console.log('TIMMYDEV Signature 2026 — Simplified Initialization.');
 
 // Theme Toggle Logic
 const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'light') {
+if (savedTheme === 'dark') {
+    document.body.classList.remove('light-mode');
+} else {
     document.body.classList.add('light-mode');
 }
 

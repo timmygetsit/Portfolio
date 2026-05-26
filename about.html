@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIMMYDEV — About Omitunde Timileyin</title>
+    <meta name="description" content="Omitunde Timileyin — Systems engineer, web developer & AI builder from Lagos, Nigeria. Building reliable, scalable, user-focused digital solutions.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-page { padding-top: 120px; padding-bottom: 0; }
+
+        /* Stats Strip */
+        .stats-strip {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin: 80px 0 0;
+            flex-wrap: wrap;
+            gap: 32px;
+        }
+        .stat-item { text-align: center; flex: 1; min-width: 120px; }
+        .stat-number { font-size: 3rem; font-weight: 700; color: var(--accent); letter-spacing: -0.04em; line-height: 1; }
+        .stat-label { font-size: 0.8rem; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.15em; margin-top: 8px; }
+
+        /* Story Section */
+        .story-section {
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 80px;
+            padding: 100px 0;
+            align-items: start;
+        }
+        .story-label { font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 20px; }
+        .story-heading { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1; letter-spacing: -0.04em; }
+        .story-body p { font-size: 1.15rem; color: var(--fg-muted); line-height: 1.8; margin-bottom: 24px; }
+        .story-body p span { color: var(--fg); font-weight: 600; }
+
+        /* Philosophy Quote */
+        .philosophy-block {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        .philosophy-block blockquote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            color: var(--fg);
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+        .philosophy-block blockquote span { color: var(--accent); }
+
+        /* Services */
+        .services-section { padding: 100px 0; }
+        .services-heading { font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 60px; letter-spacing: -0.04em; }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .service-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 36px 32px;
+            transition: var(--transition-smooth);
+        }
+        .service-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+        .service-icon { font-size: 2rem; margin-bottom: 20px; }
+        .service-card h3 { font-size: 1.1rem; margin-bottom: 14px; letter-spacing: -0.02em; }
+        .service-card p { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.6; }
+
+        /* Projects teaser */
+        .projects-teaser { padding: 80px 0 100px; border-top: 1px solid var(--border); }
+        .projects-teaser-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 50px; }
+        .project-teaser-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+        .project-teaser-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+        .project-teaser-card img { width: 100%; height: 200px; object-fit: cover; opacity: 0.7; transition: var(--transition-smooth); }
+        .project-teaser-card:hover img { opacity: 1; }
+        .project-teaser-info { padding: 24px; }
+        .project-teaser-tag { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; }
+        .project-teaser-info h3 { font-size: 1.1rem; margin: 8px 0 10px; letter-spacing: -0.02em; }
+        .project-teaser-info p { font-size: 0.9rem; color: var(--fg-muted); line-height: 1.5; }
+
+        /* CTA */
+        .about-cta {
+            padding: 100px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+        .about-cta h2 { font-size: clamp(3rem, 7vw, 6rem); letter-spacing: -0.04em; margin-bottom: 20px; }
+        .about-cta p { color: var(--fg-muted); font-size: 1.2rem; margin-bottom: 40px; }
+        .about-cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+        @media (max-width: 1024px) {
+            .story-section { grid-template-columns: 1fr; gap: 40px; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .projects-teaser-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .stats-strip { justify-content: center; }
+            .services-grid { grid-template-columns: 1fr; }
+            .projects-teaser-grid { grid-template-columns: 1fr; }
+            .about-cta h2 { font-size: 3rem; }
+        }
+    </style>
+</head>
+
+<body class="light-mode">
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand" style="text-decoration:none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent); margin-right: 8px;">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="9" y1="21" x2="9" y2="9"></line>
+            </svg>
+            <span>TIMMYDEV</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html#about" class="active">About</a>
+            <a href="index.html#skills">Skills</a>
+            <a href="index.html#projects">Work</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <a href="#" id="theme-toggle" class="nav-btn btn-secondary" title="Toggle Mode">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                THEME
+            </a>
+            <a href="index.html#contact" class="nav-btn btn-primary">HIRE ME</a>
+        </div>
+    </nav>
+
+    <main class="about-page">
+
+        <!-- ── HERO ── -->
+        <section class="container">
+            <div class="about-container">
+                <div class="about-photo-wrapper reveal-mobile">
+                    <img src="pro-photo.jpg" alt="Omitunde Timileyin" class="about-photo">
+                    <div class="about-photo-backdrop"></div>
+                </div>
+                <div class="about-content reveal-mobile">
+                    <span style="font-size:0.8rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.2em;">Lagos, Nigeria — Available for work</span>
+                    <h1 style="margin-top:16px;">Omitunde<br><span class="italics">Timileyin</span></h1>
+                    <p class="about-lead">Systems engineer & creative technologist building the reliable, scalable, and beautiful layer of the future web.</p>
+                    <div class="about-details">
+                        <div class="about-section">
+                            <h3>Who I Am</h3>
+                            <p>I'm a software developer who thrives at the intersection of robust backend systems and polished user experiences. From PHP-powered dashboards to AI-driven SaaS platforms, I bring ideas to life with precision, purpose, and craft.</p>
+                        </div>
+                        <div class="about-section">
+                            <h3>What Drives Me</h3>
+                            <p>The belief that software should work flawlessly <em>and</em> feel great. I'm motivated by hard problems, clean architecture, and the moment a system clicks into place — performant, intuitive, and built to last.</p>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;">
+                        <a href="index.html#contact" class="btn-submit" style="text-decoration:none;display:inline-block;padding:16px 32px;border-radius:12px;">Let's Work Together</a>
+                        <a href="index.html#projects" style="display:inline-flex;align-items:center;gap:8px;padding:16px 28px;border:1px solid var(--border);border-radius:12px;color:var(--fg);text-decoration:none;font-weight:600;font-size:0.9rem;transition:var(--transition-smooth);" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">View My Work →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Strip -->
+            <div class="stats-strip reveal-mobile">
+                <div class="stat-item">
+                    <div class="stat-number">3+</div>
+                    <div class="stat-label">Projects Shipped</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">7+</div>
+                    <div class="stat-label">Tech Stacks</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">~99.9%</div>
+                    <div class="stat-label">Uptime Target</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2026</div>
+                    <div class="stat-label">Active & Building</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── STORY ── -->
+        <section class="container" style="background:var(--surface);padding-left:40px;padding-right:40px;border-radius:0;">
+            <div class="story-section reveal-mobile">
+                <div>
+                    <p class="story-label">My Background</p>
+                    <h2 class="story-heading">The <span class="italics">engineer</span> behind the code.</h2>
+                </div>
+                <div class="story-body">
+                    <p>I started with a deep curiosity for how things work — not just on the surface, but at the system level. That curiosity led me to <span>Java and PHP</span>, where I learned to think in structures: data flows, request cycles, and the invisible architecture that keeps applications alive.</p>
+                    <p>Over time, I expanded into <span>Python for AI/ML workflows</span>, <span>React and JavaScript</span> for modern front-end experiences, and a sharp focus on data tooling with <span>Excel dashboards and structured documentation</span>. Each stack added a new lens for solving problems.</p>
+                    <p>Today, I work across the full spectrum — from building an AI-powered SaaS Reply Studio (<span>PersonaAI</span>) to engineering a live university timetable system (<span>LASU Diploma Timetable</span>) to shipping a full e-commerce platform for premium wigs (<span>Glam Wig Studio</span>). Every project is a chance to go deeper, build better, and deliver something that genuinely works.</p>
+                    <p>Based in <span>Lagos, Nigeria</span>, I'm building for a global audience — one resilient system at a time.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── PHILOSOPHY ── -->
+        <section class="container">
+            <div class="philosophy-block reveal-mobile">
+                <p style="font-size:0.8rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.2em;margin-bottom:32px;">My Philosophy</p>
+                <blockquote>"Great software is invisible — it just <span>works</span>, feels <span>effortless</span>, and earns <span>trust</span> every single time."</blockquote>
+            </div>
+        </section>
+
+        <!-- ── SERVICES ── -->
+        <section class="container" style="background:var(--surface);padding-left:40px;padding-right:40px;">
+            <div class="services-section reveal-mobile">
+                <h2 class="services-heading">What I <span class="italics">Build</span></h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">⚙️</div>
+                        <h3>System Architecture</h3>
+                        <p>Backend systems built for scale and reliability — PHP, Java, Python. Clean APIs, structured data flows, and zero-downtime deployments.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🌐</div>
+                        <h3>Web Development</h3>
+                        <p>Full-stack web applications and e-commerce platforms. From pixel-perfect interfaces to server-side logic — React, Next.js, and beyond.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🤖</div>
+                        <h3>AI Integration</h3>
+                        <p>Practical AI features built into real products — LLM-powered workflows, intelligent automation, and smart user experiences.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📊</div>
+                        <h3>Data & Planning</h3>
+                        <p>Excel dashboards, structured reporting, and Google Docs-driven project workflows that turn raw data into clear decisions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── PROJECTS TEASER ── -->
+        <section class="container">
+            <div class="projects-teaser reveal-mobile">
+                <p style="font-size:0.8rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.2em;margin-bottom:16px;">Featured Work</p>
+                <h2 style="font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-0.04em;">Things I've <span class="italics">shipped.</span></h2>
+                <div class="projects-teaser-grid">
+                    <div class="project-teaser-card">
+                        <img src="lasu_timetable.png" alt="LASU Diploma Timetable">
+                        <div class="project-teaser-info">
+                            <span class="project-teaser-tag">Systems / PHP</span>
+                            <h3>LASU Diploma Timetable</h3>
+                            <p>Dynamic scheduling app with multi-semester admin dashboard and JSON-based data management.</p>
+                        </div>
+                    </div>
+                    <div class="project-teaser-card">
+                        <img src="persona_ai.png" alt="PersonaAI">
+                        <div class="project-teaser-info">
+                            <span class="project-teaser-tag">AI / SaaS</span>
+                            <h3>PersonaAI</h3>
+                            <p>AI-powered Reply Studio — persona-driven response generation with a split-screen workspace.</p>
+                        </div>
+                    </div>
+                    <div class="project-teaser-card">
+                        <img src="glam_wig_studio.png" alt="Glam Wig Studio">
+                        <div class="project-teaser-info">
+                            <span class="project-teaser-tag">Web / E-Commerce</span>
+                            <h3>Glam Wig Studio</h3>
+                            <p>Full-featured wig e-commerce platform with categories, auth, cart, and live product listings.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-top:48px;">
+                    <a href="index.html#projects" style="display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border:1px solid var(--accent);color:var(--accent);border-radius:100px;font-size:0.9rem;font-weight:700;text-decoration:none;letter-spacing:0.06em;transition:var(--transition-smooth);" onmouseover="this.style.background='var(--accent)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--accent)'">VIEW ALL PROJECTS →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CTA ── -->
+        <section class="container" style="background:var(--surface);padding-left:40px;padding-right:40px;">
+            <div class="about-cta reveal-mobile">
+                <h2>Let's <span class="italics">build</span><br>something great.</h2>
+                <p>Have a project, a system to architect, or a problem to solve? I'm ready.</p>
+                <div class="about-cta-btns">
+                    <a href="index.html#contact" class="btn-submit" style="text-decoration:none;display:inline-block;padding:18px 40px;border-radius:12px;font-size:1rem;">Get In Touch</a>
+                    <a href="mailto:omitunde0710@gmail.com" style="display:inline-flex;align-items:center;gap:8px;padding:18px 32px;border:1px solid var(--border);border-radius:12px;color:var(--fg);text-decoration:none;font-weight:600;transition:var(--transition-smooth);" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">omitunde0710@gmail.com</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="container">
+        <div class="footer-top reveal-mobile">
+            <div class="footer-brand">
+                <h2>TIMMY<span class="italics" style="color: var(--accent);">DEV</span></h2>
+                <p>Engineering resilient systems and immersive digital architectures for the future web.</p>
+                <div class="footer-socials">
+                    <a href="https://github.com/timmygetsit" target="_blank">GITHUB</a>
+                    <a href="https://linkedin.com/in/timileyin-omitunde-b83349403" target="_blank">LINKEDIN</a>
+                    <a href="https://twitter.com/xt2timmy" target="_blank">TWITTER</a>
+                </div>
+            </div>
+            <div class="footer-links-group">
+                <div class="footer-col">
+                    <h4>NAVIGATION</h4>
+                    <a href="about.html">About</a>
+                    <a href="index.html#skills">Skills</a>
+                    <a href="index.html#projects">Work</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>SERVICES</h4>
+                    <a href="index.html#project-systems">System Architecture</a>
+                    <a href="index.html#project-web">Web Development</a>
+                    <a href="index.html#project-ai">AI Integration</a>
+                    <a href="index.html#project-excel">Data Analysis</a>
+                </div>
+                <div class="footer-col">
+                    <h4>LEGAL</h4>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="cookies.html">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom reveal-mobile">
+            <div class="footer-copy">&copy; 2026 TIMMYDEV // All Rights Reserved</div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
